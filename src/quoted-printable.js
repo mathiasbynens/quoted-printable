@@ -33,13 +33,13 @@
 			// For optimal compatibility, lowercase hexadecimal digits are supported
 			// as well. See http://tools.ietf.org/html/rfc2045#section-6.7, note 1.
 			.replace(/(?:=[a-fA-F0-9]{2})+/g, function($0) {
-				try {
-					return decodeURIComponent($0.replace(/=/g, '%'));
-				} catch (exception) {
+				if (/^=ED=[AB][0-9A-F]=[89AB][0-9A-F]$/i.test($0)) {
+					// It’s a lone surrogate.
 					// TODO (?): Show warning along the lines of “lone surrogates values
 					// detected in input” or “only scalar values are allowed”.
 					return '';
 				}
+				return decodeURIComponent($0.replace(/=/g, '%'));
 			});
 	};
 

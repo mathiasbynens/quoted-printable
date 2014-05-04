@@ -56,6 +56,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('cover', 'shell:cover');
 	grunt.registerTask('ci', [
+		'template',
 		'shell:test-narwhal',
 		'shell:test-phantomjs',
 		'shell:test-rhino',

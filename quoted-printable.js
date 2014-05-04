@@ -17,7 +17,7 @@
 
 	/*--------------------------------------------------------------------------*/
 
-	var decode = function(input, options) {
+	var decode = function(input) {
 		return input
 			// http://tools.ietf.org/html/rfc2045#section-6.7, rule 3:
 			// “Therefore, when decoding a `Quoted-Printable` body, any trailing white
@@ -33,13 +33,13 @@
 			// For optimal compatibility, lowercase hexadecimal digits are supported
 			// as well. See http://tools.ietf.org/html/rfc2045#section-6.7, note 1.
 			.replace(/(?:=[a-fA-F0-9]{2})+/g, function($0) {
-				try {
-					return decodeURIComponent($0.replace(/=/g, '%'));
-				} catch (exception) {
+				if (/^=ED=[AB][0-9A-F]=[89AB][0-9A-F]$/i.test($0)) {
+					// It’s a lone surrogate.
 					// TODO (?): Show warning along the lines of “lone surrogates values
 					// detected in input” or “only scalar values are allowed”.
 					return '';
 				}
+				return decodeURIComponent($0.replace(/=/g, '%'));
 			});
 	};
 
@@ -51,7 +51,7 @@
 
 	var regexUnsafeSymbols = /[\0-\b\n-\x1F=\x7F-\uD7FF\uDC00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF]/g;
 	var regexLoneSurrogate = /^[\uD800-\uDFFF]$/;
-	var encode = function(string, options) {
+	var encode = function(string) {
 
 		// Encode symbols that are definitely unsafe (i.e. unsafe in any context).
 		var encoded = string.replace(regexUnsafeSymbols, function($0) {
@@ -74,9 +74,8 @@
 			var LINE_LENGTH = 75;
 			var index = 0;
 			var length = line.length;
-			var buffer;
 			while (index < length) {
-				buffer = encoded.slice(index, index + LINE_LENGTH);
+				var buffer = encoded.slice(index, index + LINE_LENGTH);
 				// If this line ends with `=`, optionally followed by a single uppercase
 				// hexadecimal digit, we broke an escape sequence in half. Fix it by
 				// moving these characters to the next line.

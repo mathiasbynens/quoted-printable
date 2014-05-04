@@ -50,9 +50,12 @@
 		"grunt-shell": "~0.7.0",
 		"grunt-template": "~0.2.3",
 		"istanbul": "~0.2.7",
+		"jsesc": "~0.4.3",
 		"qunit-extras": "~1.1.0",
 		"qunitjs": "~1.11.0",
 		"regenerate": "~0.6.1",
-		"requirejs": "~2.1.11"
+		"requirejs": "~2.1.11",
+		"string.fromcodepoint": "~0.2.0",
+		"utf8": "~2.0.0"
 	}
 }
