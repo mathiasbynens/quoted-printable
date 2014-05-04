@@ -74,15 +74,15 @@ quotedPrintable.encode('Iñtërnâtiônàlizætiøn☃💩');
 // → 'I=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=92=\r\n=A9'
 ```
 
-### `quoted-printable.decode(text, options)`
+### `quotedPrintable.decode(text, options)`
 
 This function takes a string of text (the `text` parameter) and `Quoted-Printable`-decodes it, using UTF-8 to decode any non-ASCII octets.
 
 ```js
-quoted-printable.decode('foo=3Dbar');
+quotedPrintable.decode('foo=3Dbar');
 // → 'foo=bar'
 
-quoted-printable.decode('I=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=92=\r\n=A9');
+quotedPrintable.decode('I=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=92=\r\n=A9');
 // → 'Iñtërnâtiônàlizætiøn☃💩'
 ```
 
