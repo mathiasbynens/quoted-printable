@@ -136,18 +136,18 @@
 		define.amd
 	) {
 		define(function() {
-			return quotedPrintable
+			return quotedPrintable;
 		});
 	}	else if (freeExports && !freeExports.nodeType) {
 		if (freeModule) { // in Node.js or RingoJS v0.8.0+
-			freeModule.exports = quotedPrintable
+			freeModule.exports = quotedPrintable;
 		} else { // in Narwhal or RingoJS v0.7.0-
 			for (var key in quotedPrintable) {
 				quotedPrintable.hasOwnProperty(key) && (freeExports[key] = quotedPrintable[key]);
 			}
 		}
 	} else { // in Rhino or a web browser
-		root.quotedPrintable = quotedPrintable
+		root.quotedPrintable = quotedPrintable;
 	}
 
 }(this));
