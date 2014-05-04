@@ -172,9 +172,19 @@
 			'Lone high surrogates are ignored (U+D800)'
 		);
 		equal(
+			quotedPrintable.decode('foo=3D=ED=A0=80=3Dbar'),
+			'foo==bar',
+			'Lone low surrogates are ignored (U+D800) even if they’re part of a bigger series of escape sequences'
+		);
+		equal(
 			quotedPrintable.decode('foo=ED=AF=BFbar'),
 			'foobar',
 			'Lone high surrogates are ignored (U+DBFF)'
+		);
+		equal(
+			quotedPrintable.decode('foo=3D=ED=AF=BF=3Dbar'),
+			'foo==bar',
+			'Lone low surrogates are ignored (U+DBFF) even if they’re part of a bigger series of escape sequences'
 		);
 		equal(
 			quotedPrintable.decode('foo=ED=B0=80bar'),
@@ -182,9 +192,19 @@
 			'Lone low surrogates are ignored (U+DC00)'
 		);
 		equal(
+			quotedPrintable.decode('foo=3D=ED=B0=80=3Dbar'),
+			'foo==bar',
+			'Lone low surrogates are ignored (U+DC00) even if they’re part of a bigger series of escape sequences'
+		);
+		equal(
 			quotedPrintable.decode('foo=ED=BF=BFbar'),
 			'foobar',
 			'Lone low surrogates are ignored (U+DFFF)'
+		);
+		equal(
+			quotedPrintable.decode('foo=3D=ED=BF=BF=3Dbar'),
+			'foo==bar',
+			'Lone low surrogates are ignored (U+DFFF) even if they’re part of a bigger series of escape sequences'
 		);
 	});
 
