@@ -22,6 +22,7 @@
 				quotedPrintable.version
 			);
 			log([
+				'\nEncode or decode messages using the `Quoted-Printable` encoding (and UTF-8).',
 				'\nUsage:\n',
 				'\tquoted-printable [-e | --encode] string',
 				'\tquoted-printable [-d | --decode] string',
