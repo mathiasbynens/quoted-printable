@@ -45,6 +45,9 @@
 	"scripts": {
 		"test": "node tests/tests.js"
 	},
+	"dependencies": {
+		"utf8": "~2.0.0"
+	},
 	"devDependencies": {
 		"grunt": "~0.4.4",
 		"grunt-shell": "~0.7.0",
@@ -55,7 +58,6 @@
 		"qunitjs": "~1.11.0",
 		"regenerate": "~0.6.1",
 		"requirejs": "~2.1.11",
-		"string.fromcodepoint": "~0.2.0",
-		"utf8": "~2.0.0"
+		"string.fromcodepoint": "~0.2.0"
 	}
 }
