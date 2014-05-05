@@ -8,6 +8,7 @@
 	<body>
 		<div id="qunit"></div>
 		<script src="../node_modules/qunitjs/qunit/qunit.js"></script>
+		<script src="../node_modules/utf8/utf8.js"></script>
 		<script src="../quoted-printable.js"></script>
 		<script>
 			// populate `QUnit.urlParams`
@@ -27,7 +28,7 @@
 					'quoted-printable': '../../quoted-printable'
 				}
 			},
-			['quoted-printable'], function(quoted-printable) {
+			['quoted-printable'], function(quotedPrintable) {
 				require(['tests.js']);
 			});
 		</script>
