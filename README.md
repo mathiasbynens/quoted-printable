@@ -1,6 +1,6 @@
 # quoted-printable [![Build status](https://travis-ci.org/mathiasbynens/quoted-printable.svg?branch=master)](https://travis-ci.org/mathiasbynens/quoted-printable) [![Dependency status](https://gemnasium.com/mathiasbynens/quoted-printable.svg)](https://gemnasium.com/mathiasbynens/quoted-printable)
 
-_quoted-printable_ is a JavaScript implementation of [the `Quoted-Printable` content transfer encoding as defined by RFC 2045](http://tools.ietf.org/html/rfc2045#section-6.7), using UTF-8 for any non-ASCII symbols. It can be used to encode plaintext to its `Quoted-Printable` encoding, or the other way around (i.e. decoding). [Here’s an online demo.](http://mothereff.in/quoted-printable)
+_quoted-printable_ is a character encoding–agnostic JavaScript implementation of [the `Quoted-Printable` content transfer encoding as defined by RFC 2045](http://tools.ietf.org/html/rfc2045#section-6.7). It can be used to encode plaintext to its `Quoted-Printable` encoding, or the other way around (i.e. decoding). [Here’s an online demo using the UTF-8 character encoding.](http://mothereff.in/quoted-printable)
 
 ## Installation
 
@@ -62,27 +62,31 @@ require(
 
 A string representing the semantic version number.
 
-### `quotedPrintable.encode(text)`
+### `quotedPrintable.encode(input)`
 
-This function takes a string of text (the `text` parameter) and `Quoted-Printable`-encodes it, using UTF-8 to encode any non-ASCII symbols.
+This function takes an encoded byte string (the `input` parameter) and `Quoted-Printable`-encodes it. Each item in the input string represents an octet as per the desired character encoding. Here’s an example that uses UTF-8:
 
 ```js
-quotedPrintable.encode('foo=bar');
+var utf8 = require('utf8');
+
+quotedPrintable.encode(utf8.encode('foo=bar'));
 // → 'foo=3Dbar'
 
-quotedPrintable.encode('Iñtërnâtiônàlizætiøn☃💩');
+quotedPrintable.encode(utf8.encode('Iñtërnâtiônàlizætiøn☃💩'));
 // → 'I=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=92=\r\n=A9'
 ```
 
-### `quotedPrintable.decode(text, options)`
+### `quotedPrintable.decode(text)`
 
-This function takes a string of text (the `text` parameter) and `Quoted-Printable`-decodes it, using UTF-8 to decode any non-ASCII octets.
+This function takes a string of text (the `text` parameter) and `Quoted-Printable`-decodes it. The return value is a ‘byte string’, i.e. a string of which each item represents an octet as per the character encoding that’s being used. Here’s an example that uses UTF-8:
 
 ```js
-quotedPrintable.decode('foo=3Dbar');
+var utf8 = require('utf8');
+
+utf8.decode(quotedPrintable.decode('foo=3Dbar'));
 // → 'foo=bar'
 
-quotedPrintable.decode('I=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=92=\r\n=A9');
+utf8.decode(quotedPrintable.decode('I=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=92=\r\n=A9'));
 // → 'Iñtërnâtiônàlizætiøn☃💩'
 ```
 
@@ -94,7 +98,7 @@ To use the `quoted-printable` binary in your shell, simply install _quoted-print
 npm install -g quoted-printable
 ```
 
-After that, you’ll be able to use `quoted-printable` on the command line:
+After that, you’ll be able to use `quoted-printable` on the command line. Note that while the _quoted-printable_ library itself is character encoding–agnostic, the command-line tool applies the UTF-8 character encoding on all input.
 
 ```bash
 $ quoted-printable --encode 'foo=bar'

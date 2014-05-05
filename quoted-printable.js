@@ -17,6 +17,7 @@
 
 	/*--------------------------------------------------------------------------*/
 
+	var stringFromCharCode = String.fromCharCode;
 	var decode = function(input) {
 		return input
 			// http://tools.ietf.org/html/rfc2045#section-6.7, rule 3:
@@ -29,16 +30,13 @@
 			// endings, but for compatibility reasons we should support separate CR
 			// and LF too.
 			.replace(/=?(?:\r\n?|\n)/g, '')
-			// Remove encoded lone surrogates from the input.
-			// TODO (?): Show warning along the lines of “lone surrogates values
-			// detected in input” or “only scalar values are allowed”.
-			.replace(/=ED=[AB][0-9A-F]=[89AB][0-9A-F]/gi, '')
-			// Decode series of escape sequences of the form `=XX` where `XX` is any
+			// Decode escape sequences of the form `=XX` where `XX` is any
 			// combination of two hexidecimal digits. For optimal compatibility,
 			// lowercase hexadecimal digits are supported as well. See
 			// http://tools.ietf.org/html/rfc2045#section-6.7, note 1.
-			.replace(/(?:=[a-fA-F0-9]{2})+/g, function($0) {
-				return decodeURIComponent($0.replace(/=/g, '%'));
+			.replace(/=([a-fA-F0-9]{2})/g, function($0, $1) {
+				var codePoint = parseInt($1, 16);
+				return stringFromCharCode(codePoint);
 			});
 	};
 
@@ -49,17 +47,20 @@
 	};
 
 	var regexUnsafeSymbols = /[\0-\b\n-\x1F=\x7F-\uD7FF\uDC00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF]/g;
-	var regexLoneSurrogate = /^[\uD800-\uDFFF]$/;
 	var encode = function(string) {
 
 		// Encode symbols that are definitely unsafe (i.e. unsafe in any context).
-		var encoded = string.replace(regexUnsafeSymbols, function($0) {
-			if (regexLoneSurrogate.test($0)) {
-				// TODO (?): Show warning along the lines of “lone surrogates values
-				// detected in input” or “only scalar values are allowed”.
-				return '';
+		var encoded = string.replace(regexUnsafeSymbols, function(symbol) {
+			if (symbol > '\xFF') {
+				throw RangeError(
+					'`quotedPrintable.encode()` expects extended ASCII input only. ' +
+					'Don\u2019t forget to encode the input first using a character ' +
+					'encoding like UTF-8.'
+				);
 			}
-			return encodeURIComponent($0).replace(/%/g, '=');
+			var codePoint = symbol.charCodeAt(0);
+			var hexadecimal = codePoint.toString(16).toUpperCase();
+			return '=' + ('0' + hexadecimal).slice(-2);
 		});
 
 		// Limit lines to 76 characters (not counting the CRLF line endings).

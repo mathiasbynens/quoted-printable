@@ -2,6 +2,7 @@
 (function() {
 
 	var fs = require('fs');
+	var utf8 = require('utf8');
 	var quotedPrintable = require('../quoted-printable.js');
 	var strings = process.argv.splice(2);
 	var stdin = process.stdin;
@@ -56,7 +57,11 @@
 				return process.exit(1);
 			}
 			try {
-				result = quotedPrintable[action](string, options);
+				if (action == 'encode') {
+					result = quotedPrintable.encode(utf8.encode(string, options));
+				} else if (action == 'decode') {
+					result = utf8.decode(quotedPrintable.decode(string, options));
+				}
 				log(result);
 				count++;
 			} catch (exception) {

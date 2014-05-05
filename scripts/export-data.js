@@ -18,13 +18,8 @@ var definitelyUnsafeSymbols = regenerate()
 	.addRange(0x0, 0x10FFFF)
 	.remove(safeSymbols)
 	.remove(' ', '\t');
-// http://mathiasbynens.be/notes/javascript-encoding#surrogate-pairs
-var loneSurrogates = regenerate()
-	.addRange(0xD800, 0xDBFF) // high surrogates
-	.addRange(0xDC00, 0xDFFF); // low surrogates
 
 module.exports = {
 	'unsafeSymbols': definitelyUnsafeSymbols.toString(),
-	'loneSurrogates': loneSurrogates.toString(),
 	'version': JSON.parse(fs.readFileSync('package.json', 'utf-8')).version
 };

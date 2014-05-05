@@ -28,6 +28,12 @@
 		quotedPrintable = quotedPrintable.quotedPrintable || quotedPrintable
 	));
 
+	// The `utf8` object to be used in tests
+	var utf8 = root.utf8 || (root.utf8 = (
+		utf8 = load('../node_modules/utf8/utf8.js') || root.utf8,
+		utf8 = utf8.utf8 || utf8
+	));
+
 	/*--------------------------------------------------------------------------*/
 
 	// `throws` is a reserved word in ES3; alias it to avoid errors
@@ -114,29 +120,17 @@
 			'Exactly 77 chars of which the last one is a space'
 		);
 		equal(
-			quotedPrintable.encode('foo\uD800bar'),
-			'foobar',
-			'Lone high surrogates are ignored'
-		);
-		equal(
-			quotedPrintable.encode('foo\uDBFFbar'),
-			'foobar',
-			'Lone high surrogates are ignored'
-		);
-		equal(
-			quotedPrintable.encode('foo\uDC00bar'),
-			'foobar',
-			'Lone low surrogates are ignored'
-		);
-		equal(
-			quotedPrintable.encode('foo\uDFFFbar'),
-			'foobar',
-			'Lone low surrogates are ignored'
-		);
-		equal(
-			quotedPrintable.encode('fooI\xF1t\xEBrn\xE2ti\xF4n\xE0liz\xE6ti\xF8n\u2603\uD83D\uDCA9bar'),
+			quotedPrintable.encode(utf8.encode('fooI\xF1t\xEBrn\xE2ti\xF4n\xE0liz\xE6ti\xF8n\u2603\uD83D\uDCA9bar')),
 			'fooI=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=\r\n=92=A9bar',
-			'UTF-8 is used for non-ASCII symbols'
+			'UTF-8 can be used for non-ASCII symbols'
+		);
+		raises(
+			function() {
+				// Note: “forgot” to UTF-8-encode first
+				quotedPrintable.encode('fooI\xF1t\xEBrn\xE2ti\xF4n\xE0liz\xE6ti\xF8n\u2603\uD83D\uDCA9bar')
+			},
+			RangeError,
+			'Invalid input (input must be character-encoded into octets using any encoding)'
 		);
 	});
 
@@ -162,49 +156,9 @@
 			'Soft line break example from the RFC'
 		);
 		equal(
-			quotedPrintable.decode('fooI=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=\r\n=92=A9bar'),
+			utf8.decode(quotedPrintable.decode('fooI=C3=B1t=C3=ABrn=C3=A2ti=C3=B4n=C3=A0liz=C3=A6ti=C3=B8n=E2=98=83=F0=9F=\r\n=92=A9bar')),
 			'fooI\xF1t\xEBrn\xE2ti\xF4n\xE0liz\xE6ti\xF8n\u2603\uD83D\uDCA9bar',
-			'UTF-8 is used for non-ASCII symbols'
-		);
-		equal(
-			quotedPrintable.decode('foo=ED=A0=80bar'),
-			'foobar',
-			'Lone high surrogates are ignored (U+D800)'
-		);
-		equal(
-			quotedPrintable.decode('foo=3D=ED=A0=80=3Dbar'),
-			'foo==bar',
-			'Lone low surrogates are ignored (U+D800) even if they’re part of a bigger series of escape sequences'
-		);
-		equal(
-			quotedPrintable.decode('foo=ED=AF=BFbar'),
-			'foobar',
-			'Lone high surrogates are ignored (U+DBFF)'
-		);
-		equal(
-			quotedPrintable.decode('foo=3D=ED=AF=BF=3Dbar'),
-			'foo==bar',
-			'Lone low surrogates are ignored (U+DBFF) even if they’re part of a bigger series of escape sequences'
-		);
-		equal(
-			quotedPrintable.decode('foo=ED=B0=80bar'),
-			'foobar',
-			'Lone low surrogates are ignored (U+DC00)'
-		);
-		equal(
-			quotedPrintable.decode('foo=3D=ED=B0=80=3Dbar'),
-			'foo==bar',
-			'Lone low surrogates are ignored (U+DC00) even if they’re part of a bigger series of escape sequences'
-		);
-		equal(
-			quotedPrintable.decode('foo=ED=BF=BFbar'),
-			'foobar',
-			'Lone low surrogates are ignored (U+DFFF)'
-		);
-		equal(
-			quotedPrintable.decode('foo=3D=ED=BF=BF=3Dbar'),
-			'foo==bar',
-			'Lone low surrogates are ignored (U+DFFF) even if they’re part of a bigger series of escape sequences'
+			'UTF-8 can be used for non-ASCII symbols'
 		);
 	});
 
