@@ -1,6 +1,6 @@
 {
 	"name": "quoted-printable",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "A robust & character encoding–agnostic JavaScript implementation of the `Quoted-Printable` content transfer encoding as defined by RFC 2045.",
 	"homepage": "http://mths.be/quoted-printable",
 	"main": "quoted-printable.js",

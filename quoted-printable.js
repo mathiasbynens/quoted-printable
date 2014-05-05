@@ -1,4 +1,4 @@
-/*! http://mths.be/quoted-printable v0.2.0 by @mathias | MIT license */
+/*! http://mths.be/quoted-printable v0.2.1 by @mathias | MIT license */
 ;(function(root) {
 
 	// Detect free variables `exports`.
@@ -126,7 +126,7 @@
 	var quotedPrintable = {
 		'encode': encode,
 		'decode': decode,
-		'version': '0.2.0'
+		'version': '0.2.1'
 	};
 
 	// Some AMD build optimizers, like r.js, check for specific condition patterns
