@@ -1,6 +1,6 @@
 # quoted-printable [![Build status](https://travis-ci.org/mathiasbynens/quoted-printable.svg?branch=master)](https://travis-ci.org/mathiasbynens/quoted-printable) [![Dependency status](https://gemnasium.com/mathiasbynens/quoted-printable.svg)](https://gemnasium.com/mathiasbynens/quoted-printable)
 
-_quoted-printable_ is a character encoding–agnostic JavaScript implementation of [the `Quoted-Printable` content transfer encoding as defined by RFC 2045](http://tools.ietf.org/html/rfc2045#section-6.7). It can be used to encode plaintext to its `Quoted-Printable` encoding, or the other way around (i.e. decoding). [Here’s an online demo using the UTF-8 character encoding.](http://mothereff.in/quoted-printable)
+_quoted-printable_ is a character encoding–agnostic JavaScript implementation of [the `Quoted-Printable` content transfer encoding as defined by RFC 2045](https://tools.ietf.org/html/rfc2045#section-6.7). It can be used to encode plaintext to its `Quoted-Printable` encoding, or the other way around (i.e. decoding). [Here’s an online demo using the UTF-8 character encoding.](https://mothereff.in/quoted-printable)
 
 ## Installation
 
@@ -117,7 +117,7 @@ $ quoted-printable --encode < foo.txt > foo-quoted-printable.txt
 Or do the same with an online text file:
 
 ```bash
-$ curl -sL 'http://mths.be/brh' | quoted-printable --encode > quoted-printable.txt
+$ curl -sL 'https://mths.be/brh' | quoted-printable --encode > quoted-printable.txt
 ```
 
 Or, the opposite — read a local file containing a `Quoted-Printable`-encoded message, decode it back to plain text, and save the result to a new file:
@@ -144,8 +144,8 @@ To generate the code coverage report, use `grunt cover`.
 
 | [![twitter/mathias](https://gravatar.com/avatar/24e08a9ea84deb17ae121074d0f17125?s=70)](https://twitter.com/mathias "Follow @mathias on Twitter") |
 |---|
-| [Mathias Bynens](http://mathiasbynens.be/) |
+| [Mathias Bynens](https://mathiasbynens.be/) |
 
 ## License
 
-_quoted-printable_ is available under the [MIT](http://mths.be/mit) license.
+_quoted-printable_ is available under the [MIT](https://mths.be/mit) license.

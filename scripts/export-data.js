@@ -1,7 +1,7 @@
 var fs = require('fs');
 var regenerate = require('regenerate');
 
-// http://tools.ietf.org/html/rfc2045#section-6.7
+// https://tools.ietf.org/html/rfc2045#section-6.7
 // safe-char := <any octet with decimal value of 33 through
 //              60 inclusive, and 62 through 126>
 //              ; Characters not listed as "mail-safe" in

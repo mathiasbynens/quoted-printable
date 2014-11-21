@@ -18,7 +18,7 @@
 
 		if (/^(?:-h|--help|undefined)$/.test(option)) {
 			log(
-				'quoted-printable v%s - http://mths.be/quoted-printable',
+				'quoted-printable v%s - https://mths.be/quoted-printable',
 				quotedPrintable.version
 			);
 			log([

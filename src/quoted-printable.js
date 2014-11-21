@@ -1,4 +1,4 @@
-/*! http://mths.be/quoted-printable v<%= version %> by @mathias | MIT license */
+/*! https://mths.be/quoted-printable v<%= version %> by @mathias | MIT license */
 ;(function(root) {
 
 	// Detect free variables `exports`.
@@ -20,7 +20,7 @@
 	var stringFromCharCode = String.fromCharCode;
 	var decode = function(input) {
 		return input
-			// http://tools.ietf.org/html/rfc2045#section-6.7, rule 3:
+			// https://tools.ietf.org/html/rfc2045#section-6.7, rule 3:
 			// “Therefore, when decoding a `Quoted-Printable` body, any trailing white
 			// space on a line must be deleted, as it will necessarily have been added
 			// by intermediate transport agents.”
@@ -33,7 +33,7 @@
 			// Decode escape sequences of the form `=XX` where `XX` is any
 			// combination of two hexidecimal digits. For optimal compatibility,
 			// lowercase hexadecimal digits are supported as well. See
-			// http://tools.ietf.org/html/rfc2045#section-6.7, note 1.
+			// https://tools.ietf.org/html/rfc2045#section-6.7, note 1.
 			.replace(/=([a-fA-F0-9]{2})/g, function($0, $1) {
 				var codePoint = parseInt($1, 16);
 				return stringFromCharCode(codePoint);

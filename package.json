@@ -2,7 +2,7 @@
 	"name": "quoted-printable",
 	"version": "0.2.1",
 	"description": "A robust & character encoding–agnostic JavaScript implementation of the `Quoted-Printable` content transfer encoding as defined by RFC 2045.",
-	"homepage": "http://mths.be/quoted-printable",
+	"homepage": "https://mths.be/quoted-printable",
 	"main": "quoted-printable.js",
 	"bin": "bin/quoted-printable",
 	"man": "man/quoted-printable.1",
@@ -14,23 +14,16 @@
 		"quoted-printable",
 		"string"
 	],
-	"licenses": [
-		{
-			"type": "MIT",
-			"url": "http://mths.be/mit"
-		}
-	],
+	"license": "MIT",
 	"author": {
 		"name": "Mathias Bynens",
-		"url": "http://mathiasbynens.be/"
+		"url": "https://mathiasbynens.be/"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/mathiasbynens/quoted-printable.git"
 	},
-	"bugs": {
-		"url": "https://github.com/mathiasbynens/quoted-printable/issues"
-	},
+	"bugs": "https://github.com/mathiasbynens/quoted-printable/issues",
 	"files": [
 		"LICENSE-MIT.txt",
 		"quoted-printable.js",
