@@ -25,11 +25,10 @@
 			// space on a line must be deleted, as it will necessarily have been added
 			// by intermediate transport agents.”
 			.replace(/[\t\x20]$/gm, '')
-			// Remove hard line breaks. Note: this includes `=` followed by a line
-			// break. Proper `Quoted-Printable`-encoded data only contains CRLF line
-			// endings, but for compatibility reasons we should support separate CR
-			// and LF too.
-			.replace(/=?(?:\r\n?|\n)/g, '')
+			// Remove hard line breaks preceded by `=`. Proper `Quoted-Printable`-
+			// encoded data only contains CRLF line  endings, but for compatibility
+			// reasons we support separate CR and LF too.
+			.replace(/=(?:\r\n?|\n|$)/g, '')
 			// Decode escape sequences of the form `=XX` where `XX` is any
 			// combination of two hexidecimal digits. For optimal compatibility,
 			// lowercase hexadecimal digits are supported as well. See

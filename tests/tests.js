@@ -146,6 +146,16 @@
 			'Equals sign'
 		);
 		equal(
+			quotedPrintable.decode('foo\nbar'),
+			'foo\nbar',
+			'Hard new line characters'
+		);
+		equal(
+			quotedPrintable.decode('foo\r\nbar='),
+			'foo\r\nbar',
+			'Trailing ='
+		);
+		equal(
 			quotedPrintable.decode('xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=\r\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx=\r\nxx'),
 			'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
 			'76 * 2 characters'

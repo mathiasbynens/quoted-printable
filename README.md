@@ -4,7 +4,7 @@ _quoted-printable_ is a character encoding–agnostic JavaScript implementation 
 
 ## Installation
 
-Via [npm](http://npmjs.org/):
+Via [npm](https://www.npmjs.org/):
 
 ```bash
 npm install quoted-printable
@@ -28,7 +28,7 @@ In a browser:
 <script src="quoted-printable.js"></script>
 ```
 
-In [Narwhal](http://narwhaljs.org/), [Node.js](http://nodejs.org/), and [RingoJS](http://ringojs.org/):
+In [Narwhal](http://narwhaljs.org/), [Node.js](https://nodejs.org/), and [RingoJS](http://ringojs.org/):
 
 ```js
 var quotedPrintable = require('quoted-printable');
