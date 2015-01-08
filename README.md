@@ -1,4 +1,4 @@
-# quoted-printable [![Build status](https://travis-ci.org/mathiasbynens/quoted-printable.svg?branch=master)](https://travis-ci.org/mathiasbynens/quoted-printable) [![Dependency status](https://gemnasium.com/mathiasbynens/quoted-printable.svg)](https://gemnasium.com/mathiasbynens/quoted-printable)
+# quoted-printable [![Build status](https://travis-ci.org/mathiasbynens/quoted-printable.svg?branch=master)](https://travis-ci.org/mathiasbynens/quoted-printable) [![Code coverage status](http://img.shields.io/coveralls/mathiasbynens/quoted-printable/master.svg)](https://coveralls.io/r/mathiasbynens/quoted-printable) [![Dependency status](https://gemnasium.com/mathiasbynens/quoted-printable.svg)](https://gemnasium.com/mathiasbynens/quoted-printable)
 
 _quoted-printable_ is a character encoding–agnostic JavaScript implementation of [the `Quoted-Printable` content transfer encoding as defined by RFC 2045](https://tools.ietf.org/html/rfc2045#section-6.7). It can be used to encode plaintext to its `Quoted-Printable` encoding, or the other way around (i.e. decoding). [Here’s an online demo using the UTF-8 character encoding.](https://mothereff.in/quoted-printable)
 
