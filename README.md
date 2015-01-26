@@ -1,10 +1,10 @@
-# quoted-printable [![Build status](https://travis-ci.org/mathiasbynens/quoted-printable.svg?branch=master)](https://travis-ci.org/mathiasbynens/quoted-printable) [![Code coverage status](http://img.shields.io/coveralls/mathiasbynens/quoted-printable/master.svg)](https://coveralls.io/r/mathiasbynens/quoted-printable) [![Dependency status](https://gemnasium.com/mathiasbynens/quoted-printable.svg)](https://gemnasium.com/mathiasbynens/quoted-printable)
+# quoted-printable [![Build status](https://travis-ci.org/mathiasbynens/quoted-printable.svg?branch=master)](https://travis-ci.org/mathiasbynens/quoted-printable) [![Code coverage status](https://coveralls.io/repos/mathiasbynens/quoted-printable/badge.svg)](https://coveralls.io/r/mathiasbynens/quoted-printable) [![Dependency status](https://gemnasium.com/mathiasbynens/quoted-printable.svg)](https://gemnasium.com/mathiasbynens/quoted-printable)
 
 _quoted-printable_ is a character encoding–agnostic JavaScript implementation of [the `Quoted-Printable` content transfer encoding as defined by RFC 2045](https://tools.ietf.org/html/rfc2045#section-6.7). It can be used to encode plaintext to its `Quoted-Printable` encoding, or the other way around (i.e. decoding). [Here’s an online demo using the UTF-8 character encoding.](https://mothereff.in/quoted-printable)
 
 ## Installation
 
-Via [npm](https://www.npmjs.org/):
+Via [npm](https://www.npmjs.com/):
 
 ```bash
 npm install quoted-printable
@@ -28,7 +28,7 @@ In a browser:
 <script src="quoted-printable.js"></script>
 ```
 
-In [Narwhal](http://narwhaljs.org/), [Node.js](https://nodejs.org/), and [RingoJS](http://ringojs.org/):
+In [Node.js](https://nodejs.org/), [io.js](https://iojs.org/), [Narwhal](http://narwhaljs.org/), and [RingoJS](http://ringojs.org/):
 
 ```js
 var quotedPrintable = require('quoted-printable');
@@ -130,7 +130,7 @@ See `quoted-printable --help` for the full list of options.
 
 ## Support
 
-_quoted-printable_ is designed to work in at least Node.js v0.10.0, Narwhal 0.3.2, RingoJS 0.8-0.9, PhantomJS 1.9.0, Rhino 1.7RC4, as well as old and modern versions of Chrome, Firefox, Safari, Opera, and Internet Explorer.
+_quoted-printable_ is designed to work in at least Node.js v0.10.0, io.js v1.0.0, Narwhal 0.3.2, RingoJS 0.8-0.11, PhantomJS 1.9.0, Rhino 1.7RC4, as well as old and modern versions of Chrome, Firefox, Safari, Opera, and Internet Explorer.
 
 ## Unit tests & code coverage
 

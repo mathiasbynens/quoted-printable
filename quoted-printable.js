@@ -1,4 +1,4 @@
-/*! https://mths.be/quoted-printable v0.2.1 by @mathias | MIT license */
+/*! https://mths.be/quoted-printable v1.0.0 by @mathias | MIT license */
 ;(function(root) {
 
 	// Detect free variables `exports`.
@@ -45,7 +45,7 @@
 			.replace(/\t$/, '=09') // Handle trailing tab.
 	};
 
-	var regexUnsafeSymbols = /[\0-\b\n-\x1F=\x7F-\uD7FF\uDC00-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF]/g;
+	var regexUnsafeSymbols = /[\0-\x08\n-\x1F=\x7F-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]/g;
 	var encode = function(string) {
 
 		// Encode symbols that are definitely unsafe (i.e. unsafe in any context).
@@ -125,7 +125,7 @@
 	var quotedPrintable = {
 		'encode': encode,
 		'decode': decode,
-		'version': '0.2.1'
+		'version': '1.0.0'
 	};
 
 	// Some AMD build optimizers, like r.js, check for specific condition patterns
@@ -139,7 +139,7 @@
 			return quotedPrintable;
 		});
 	}	else if (freeExports && !freeExports.nodeType) {
-		if (freeModule) { // in Node.js or RingoJS v0.8.0+
+		if (freeModule) { // in Node.js, io.js, or RingoJS v0.8.0+
 			freeModule.exports = quotedPrintable;
 		} else { // in Narwhal or RingoJS v0.7.0-
 			for (var key in quotedPrintable) {

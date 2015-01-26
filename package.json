@@ -39,7 +39,7 @@
 		"test": "node tests/tests.js"
 	},
 	"dependencies": {
-		"utf8": "^2.0.0"
+		"utf8": "^2.1.0"
 	},
 	"devDependencies": {
 		"coveralls": "^2.11.1",
@@ -50,7 +50,7 @@
 		"jsesc": "^0.5.0",
 		"qunit-extras": "^1.4.0",
 		"qunitjs": "~1.11.0",
-		"regenerate": "^1.0.1",
+		"regenerate": "^1.2.1",
 		"requirejs": "^2.1.15",
 		"string.fromcodepoint": "^0.2.1"
 	}

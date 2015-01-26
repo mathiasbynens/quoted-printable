@@ -20,6 +20,6 @@ var definitelyUnsafeSymbols = regenerate()
 	.remove(' ', '\t');
 
 module.exports = {
-	'unsafeSymbols': definitelyUnsafeSymbols.toString(),
+	'unsafeSymbols': definitelyUnsafeSymbols.toString({ 'bmpOnly': true }),
 	'version': JSON.parse(fs.readFileSync('package.json', 'utf-8')).version
 };
